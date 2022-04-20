@@ -1,0 +1,47 @@
+//Lagauge : Kotlin
+
+import kotlin.text.max
+import java.util.*
+import java.util.Scanner
+
+fun main(args: Array<String>) {
+    //입력 값 받는 부분
+    val reader = Scanner(System.`in`)    
+    if (reader.hasNext() == false) return
+    
+    var stringLines = ArrayList<String>()
+    
+    val lineCnt = reader.nextInt()
+    for(index in 1..lineCnt)
+    {
+        stringLines.add(reader.next())
+    }
+    
+    //실제 로직
+    val standardName = stringLines[0] //기준
+    var stardardNmList = standardName.chunked(1) //한글자씩 자름    
+    var answer:String = "" 
+    
+    for(charPos in 0..stardardNmList.size-1)
+    {
+        answer = answer + compareChar(charPos, standardName, stringLines)        
+    }    
+    println(answer)    
+}
+   
+fun compareChar(pos:Int, standardChar:String, targetList:List<String>):String
+{
+    var returnChar:String = "?"
+    var isSame:Boolean = true
+    
+    for (index in 1..targetList.size-1) 
+    {
+        if(standardChar[pos] != targetList[index].get(pos))
+        {
+            isSame = false
+        }	
+    }
+    if (isSame == true) returnChar = standardChar[pos].toString()
+    
+    return returnChar
+}
