@@ -1,0 +1,35 @@
+import kotlin.text.max
+import java.util.*
+import java.util.Scanner
+
+fun main(args: Array<String>) {
+    //입력 값 받는 부분
+    val reader = Scanner(System.`in`)    
+    if (reader.hasNextInt() == false) return        
+    val startNum = reader.next()
+    //var startNum = "55"
+    var calCnt:Int = 1
+        
+    var newStartNum = ""
+    
+    while(true){        
+        if (calCnt == 1) newStartNum = startNum
+        
+        newStartNum = "0" + newStartNum
+        
+        var startNumLength = newStartNum.length
+        var firstInt = newStartNum.substring(startNumLength-2,startNumLength-1).toInt()
+        var secondInt = newStartNum.substring(startNumLength-1,startNumLength).toInt()
+        
+        var sum1 = (firstInt+secondInt).toString()
+		var newSecondInt = sum1.substring(sum1.length-1, sum1.length).toString()
+        
+		newStartNum = secondInt.toString() + newSecondInt.toString()
+        
+        if (startNum == newStartNum) break        
+        else calCnt = calCnt +1        
+    }
+    
+    println(calCnt)    
+}
+   
